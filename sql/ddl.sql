@@ -1,7 +1,7 @@
 begin;
 
 set database_name = 'PREDICTIVE_MAINTENANCE';
-set schema_name = 'VEHICLE_DATA';
+set schema_name = 'AZURE_VM';
 set role_name = '<insert_role>';
 
 -- create database & schema
@@ -20,23 +20,39 @@ grant all privileges
 on schema identifier($schema_name)
 to role identifier($role_name);
 
-create or replace TABLE USAGE_DATA (
-	ASSET VARCHAR(16777216),
-    TIME NUMBER(38,0),
-    USE FLOAT
-);
+use schema identifier($schema_name);
 
-create or replace TABLE MAINTENANCE_RECORDS (
-	ASSET VARCHAR(16777216),
-    TIME NUMBER(38,0),
-    REASON VARCHAR(16777216),
-    PART VARCHAR(16777216),
-    QUANTITY NUMBER(38,0)
+create or replace TABLE ERRORS (
+    DATETIME TIMESTAMP_NTZ, 
+    MACHINEID NUMBER(38,0),
+    ERRORID VARCHAR(16777216)
 );
 
 create or replace TABLE FAILURES (
-    ASSET VARCHAR(16777216),
-    failure_bin NUMBER(38,0)
+    DATETIME TIMESTAMP_NTZ, 
+    MACHINEID NUMBER(38,0),
+    FAILURE VARCHAR(16777216)
+);
+
+create or replace TABLE MACHINES (
+	MACHINEID NUMBER(38,0),
+    MODEL VARCHAR(16777216),
+    AGE NUMBER(38,0)
+);
+
+create or replace TABLE MAINTENANCE (
+	DATETIME TIMESTAMP_NTZ,
+    MACHINEID NUMBER(38,0),
+    COMP VARCHAR(16777216)
+);
+
+create or replace TABLE TELEMETRY (
+    DATETIME TIMESTAMP_NTZ,
+    MACHINEID NUMBER(38,0),
+    VOLT NUMBER(38,0),
+    ROTATE NUMBER(38,0),
+    PRESSURE NUMBER(38,0),
+    VIBRATION NUMBER(38,0)
 );
 
 commit;
