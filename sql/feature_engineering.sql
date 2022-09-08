@@ -29,7 +29,9 @@ create or replace view predictive_maintenance.azure_vm.vm_failures as (
 
 create or replace view predictive_maintenance.azure_vm.vm_machines as (
     select 
-      * 
+      machineid as machine_id,
+      model,
+      age 
     from predictive_maintenance.azure_vm.machines
 );
 
