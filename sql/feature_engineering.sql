@@ -68,47 +68,39 @@ create or replace view predictive_maintenance.azure_vm.vm_telemetry as (
       avg(vibration) over (partition by machine_id order by ts desc rows between 1 following and 24 following) as vibration_24hr_avg,
       max(vibration) over (partition by machine_id order by ts desc rows between 1 following and 24 following) as vibration_24hr_max,
       min(vibration) over (partition by machine_id order by ts desc rows between 1 following and 24 following) as vibration_24hr_min,
-      vibration - vibration_24hr_avg as vibration_diff_from_24hr_avg
-
-      /* avg(voltage) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as voltage_7day_avg,
+      vibration - vibration_24hr_avg as vibration_diff_from_24hr_avg,
+      avg(voltage) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as voltage_7day_avg,
       max(voltage) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as voltage_7day_max,
       min(voltage) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as voltage_7day_min,
       voltage - voltage_7day_avg as voltage_diff_from_7day_avg,
-
       avg(rotation) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as rotation_7day_avg,
       max(rotation) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as rotation_7day_max,
       min(rotation) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as rotation_7day_min,
       rotation - rotation_7day_avg as rotation_diff_from_7day_avg,
-
       avg(pressure) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as pressure_7day_avg,
       max(pressure) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as pressure_7day_max,
       min(pressure) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as pressure_7day_min,
       pressure - pressure_7day_avg as pressure_diff_from_7day_avg,
-
       avg(vibration) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as vibration_7day_avg,
       max(vibration) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as vibration_7day_max,
       min(vibration) over (partition by machine_id order by ts desc rows between 1 following and 168 following) as vibration_7day_min,
       vibration - vibration_7day_avg as vibration_diff_from_7day_avg,
-
       avg(voltage) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as voltage_30day_avg,
       max(voltage) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as voltage_30day_max,
       min(voltage) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as voltage_30day_min,
       voltage - voltage_30day_avg as voltage_diff_from_30day_avg,
-
       avg(rotation) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as rotation_30day_avg,
       max(rotation) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as rotation_30day_max,
       min(rotation) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as rotation_30day_min,
       rotation - rotation_30day_avg as rotation_diff_from_30day_avg,
-
       avg(pressure) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as pressure_30day_avg,
       max(pressure) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as pressure_30day_max,
       min(pressure) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as pressure_30day_min,
       pressure - pressure_30day_avg as pressure_diff_from_30day_avg,
-
       avg(vibration) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as vibration_30day_avg,
       max(vibration) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as vibration_30day_max,
       min(vibration) over (partition by machine_id order by ts desc rows between 1 following and 720 following) as vibration_30day_min,
-      vibration - vibration_30day_avg as vibration_diff_from_30day_avg */
+      vibration - vibration_30day_avg as vibration_diff_from_30day_avg
     from predictive_maintenance.azure_vm.telemetry
 );
 

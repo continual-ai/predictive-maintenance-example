@@ -1,0 +1,23 @@
+type: FeatureSet
+name: vm_machine_errors
+entity: azure_vm
+index: machine_id
+time_index: ts
+description: errors encountered by machines
+owners: 
+  - andrew@continual.ai 
+documentation: |
+  https://docs.continual.ai/predictive-maintenance/
+columns: 
+  - name: error1
+    type: BOOLEAN
+  - name: error2
+    type: BOOLEAN
+  - name: error3
+    type: BOOLEAN
+  - name: error4
+    type: BOOLEAN
+  - name: error5
+    type: BOOLEAN
+query: |
+  select * from predictive_maintenance.azure_vm.vm_errors

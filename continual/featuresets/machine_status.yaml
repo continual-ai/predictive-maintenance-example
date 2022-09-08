@@ -1,0 +1,12 @@
+type: FeatureSet
+name: vm_machine_status
+entity: azure_vm
+index: machine_id
+time_index: ts
+description: machine health status by hour
+owners: 
+  - andrew@continual.ai 
+documentation: |
+  https://docs.continual.ai/predictive-maintenance/
+query: |
+  select * from predictive_maintenance.azure_vm.vm_hourly_status

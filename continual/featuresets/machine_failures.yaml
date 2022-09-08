@@ -1,0 +1,21 @@
+type: FeatureSet
+name: vm_machine_failures
+entity: azure_vm
+index: machine_id
+time_index: ts
+description: recorded machine failures
+owners: 
+  - andrew@continual.ai 
+documentation: |
+  https://docs.continual.ai/predictive-maintenance/
+columns: 
+  - name: comp1_failure
+    type: BOOLEAN
+  - name: comp2_failure
+    type: BOOLEAN
+  - name: comp3_failure
+    type: BOOLEAN
+  - name: comp4_failure
+    type: BOOLEAN
+query: |
+  select * from predictive_maintenance.azure_vm.vm_failures

@@ -1,0 +1,18 @@
+type: Model
+name: vm_needs_maintenance_30day
+index: machine_id
+time_index: ts
+target: failure_in_30day
+split: split
+description: predictive maintenance for azure vm using 1 month window
+owners:
+  - andrew@continual.ai
+documentation: |
+    https://docs.continual.ai/predictive-maintenance/
+columns:
+  - name: machine_id
+    entity: azure_vm
+train:
+  metric: f1
+query: |
+  select machine_id, ts, failure_in_30day from predictive_maintenance.azure_vm.vm_next_failure_base

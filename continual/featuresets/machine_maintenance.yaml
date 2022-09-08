@@ -1,0 +1,21 @@
+type: FeatureSet
+name: vm_machine_maintenance
+entity: azure_vm
+index: machine_id
+time_index: ts
+description: historical maintenance records for all machines
+owners: 
+  - andrew@continual.ai 
+documentation: |
+  https://docs.continual.ai/predictive-maintenance/
+columns: 
+  - name: comp1_maint
+    type: BOOLEAN
+  - name: comp2_maint
+    type: BOOLEAN
+  - name: comp3_maint
+    type: BOOLEAN
+  - name: comp4_maint
+    type: BOOLEAN
+query: |
+  select * from predictive_maintenance.azure_vm.vm_maintenance

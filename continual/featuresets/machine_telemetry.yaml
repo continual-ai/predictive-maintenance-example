@@ -1,0 +1,12 @@
+type: FeatureSet
+name: vm_machine_telemetry
+entity: azure_vm
+index: machine_id
+time_index: ts
+description: machine telemetry information collected per hour and aggregated over rolling windows
+owners: 
+  - andrew@continual.ai 
+documentation: |
+  https://docs.continual.ai/predictive-maintenance/
+query: |
+  select * from predictive_maintenance.azure_vm.vm_telemetry

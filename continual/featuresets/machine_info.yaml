@@ -1,0 +1,11 @@
+type: FeatureSet
+name: vm_machine_info
+entity: azure_vm
+index: machine_id
+description: machine information
+owners: 
+  - andrew@continual.ai 
+documentation: |
+  https://docs.continual.ai/predictive-maintenance/
+query: |
+  select * from predictive_maintenance.azure_vm.vm_machines
