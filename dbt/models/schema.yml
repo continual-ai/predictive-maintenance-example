@@ -1,0 +1,174 @@
+version: 2
+
+models:
+  - name: vm_next_failure_1day
+    description: Predictive maintenance model with a one day time window
+    columns: 
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('vm_next_failure_base')
+              field: machine_id
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+      - name: failure_in_1day
+        description: Whether the VM will fail within the next 24 hours
+      - name: split
+        description: Custom split for the model. Should contain either TRAIN, VALI, or TEST. 
+
+  - name: vm_next_failure_7day
+    description: Predictive maintenance model with a one week time window
+    columns: 
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('vm_next_failure_base')
+              field: machine_id
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+      - name: failure_in_7day
+        description: Whether the VM will fail within the next one week
+      - name: split
+        description: Custom split for the model. Should contain either TRAIN, VALI, or TEST.
+
+  - name: vm_next_failure_30day
+    description: Predictive maintenance model with a one month time window
+    columns: 
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+          - relationships:
+              to: ref('vm_next_failure_base')
+              field: machine_id
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+      - name: failure_in_30day
+        description: Whether the VM will fail within the next one month
+      - name: split
+        description: Custom split for the model. Should contain either TRAIN, VALI, or TEST.
+
+  - name: vm_next_failure_base
+    description: Master view that contains multiple models. Each column represents a different target that can be used. 
+    columns:
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+      - name: failure_in_1day
+        description: Whether the VM will fail in the next 24 hours
+      - name: comp1_failure_in_1day
+        description: Whether component 1 in the VM will fail next 24 hours
+      - name: comp2_failure_in_1day
+        description: Whether component 2 in the VM will fail next 24 hours
+      - name: comp3_failure_in_1day
+        description: Whether component 3 in the VM will fail next 24 hours
+      - name: comp4_failure_in_1day
+        description: Whether component 4 in the VM will fail next 24 hours
+      - name: failure_in_7day
+        description: Whether the VM will fail in the next one week
+      - name: comp1_failure_in_7day
+        description: Whether component 1 in the VM will fail next one week
+      - name: comp2_failure_in_7day
+        description: Whether component 2 in the VM will fail next one week
+      - name: comp3_failure_in_7day
+        description: Whether component 3 in the VM will fail next one week
+      - name: comp4_failure_in_7day
+        description: Whether component 4 in the VM will fail next one week
+      - name: failure_in_30day
+        description: Whether the VM will fail in the next one month
+      - name: comp1_failure_in_30day
+        description: Whether component 1 in the VM will fail next one month
+      - name: comp2_failure_in_30day
+        description: Whether component 2 in the VM will fail next one month
+      - name: comp3_failure_in_30day
+        description: Whether component 3 in the VM will fail next one month
+      - name: comp4_failure_in_30day
+        description: Whether component 4 in the VM will fail next one month
+
+  - name: vm_errors
+    description: Errors staging table pivoted on specific errors
+    columns:
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+      - name: ts
+        description: timestamp
+        ests: 
+          - not_null
+
+  - name: vm_failures
+    description: Failures staging table pivoted on specific component failures
+    columns:
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+
+  - name: vm_machines
+    description: Dimension table containing lookup information for each machine
+    columns:
+      - name: machine_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: model
+        description: The specific model of the vm / machine
+        tests:
+          - not_null
+      - name: age
+        description: The age of the machine
+        tests:
+          - not_null
+
+  - name: vm_maintenance
+    description: Maintenance staging table pivoted on which component was replaced
+    columns:
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+
+  - name: vm_telemetry
+    description: Telemetry information gathered for all machines every hour. Contains voltage, rotation, pressure, and vibration measurements along with min / max / avg over various rolling time windows and how each measurement stacks up to this average.
+    columns: 
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+      - name: voltage
+        description: Current voltage reading of the machine
+      - name: rotation
+        description: Current rotation reading of the machine
+      - name: pressure
+        description: Current pressure reading of the machine
+      - name: vibration
+        description: Current vibration reading of the machine

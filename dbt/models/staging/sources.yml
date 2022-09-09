@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+- name: Azure_VM
+  description: Where you plan to upload the Kaggle datasets (refer to our staging scripts)
+  schema: AZURE_VM
+  tables:
+    - name: errors
+      description: A history of all errors, not failures, encountered by each machine while in operation condition. Rounded to the nearest hour.
+    - name: failures
+      description: A history of all replacements of a component in a machine due to a recorded failure. Rounded to the nearest hour.
+    - name: machines
+      description: Lookup table of all machines, containing the model type and age of each machine by years in service
+    - name: maintenance
+      description: Fact table containing all components that have been replaced in a machine, either due to scheduled maintenance or because a machine has broken down. Rounded to the nearest hour.
+    - name: telemetry
+      description: Sensor data of over 100 machines, collected in real time, containing hourly averages of voltage, rotation, pressure, and vibration over the span of a year. Rounded to the nearest hour.

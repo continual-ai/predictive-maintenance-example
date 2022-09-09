@@ -15,4 +15,4 @@ columns:
 train:
   metric: f1
 query: |
-  select machine_id, ts, failure_in_7day from predictive_maintenance.azure_vm.vm_next_failure_base
+  select machine_id, ts, failure_in_7day, split from predictive_maintenance.azure_vm.vm_next_failure_base
