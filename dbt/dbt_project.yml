@@ -7,7 +7,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'azure_vm'
+profile: 'continual'
 
 # Setting variables in case user wants to adjust prediction threshold in "Nday" model or split thresholds
 vars:
@@ -37,8 +37,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
-# Specifying materializations
+# Specifying materializations and addint metadata
 models:
   azure_vm:
+    materiialized: view
+    +meta: {
+        "continual" : {
+          "create_stub": True,
+          "create_exposures": True,
+          "create_sources": True,
+          }
+        }
     staging:
       materialized: table
