@@ -1,6 +1,6 @@
 # predictive-maintenance-example
 
-Welcome to Continual's predictive maintenance example, based on the following [Kaggle for Microsoft Azure Predictive Maintenance](https://www.kaggle.com/datasets/arnabbiswas1/microsoft-azure-predictive-maintenance). For a full walkthrough, please visit our [documentation](https://docs.continual.ai/predictive-maintenance/) and you can find more guided example [here](https://docs.continual.ai/examples-overview/). 
+Welcome to Continual's predictive maintenance example. For a full walkthrough, please visit our [documentation](https://docs.continual.ai/predictive-maintenance/) and you can find more guided example [here](https://docs.continual.ai/examples-overview/). 
 
 Note: This project is designed to run with Snowflake. You should be able to adapt it though pretty easily to other warehouse vendors, but [let us know](https://docs.continual.ai/help-support/) if you encounter any issues. 
 
@@ -14,7 +14,7 @@ kaggle datasets download -d arnabbiswas1/microsoft-azure-predictive-maintenance
 You can then upload it to your cloud data warehouse of choice using your preferred mechanism. For convenience, we've included a few short scripts that you can leverage to upload this data into Snowflake manually. 
 
 1. First, run the [ddl.sql](https://github.com/AndrewRTsao/predictive-maintenance-example/blob/main/sql/ddl.sql) file to create your base tables. 
-2. Afterwards, using the CSVs downloaded from Kaggle, you can use `snowsql` to upload the data. Refer to the SnowSQL's [documentation](https://docs.snowflake.com/en/user-guide/snowsql-use.html#running-batch-scripts) and execute the [snowsql_staging.sql](https://github.com/AndrewRTsao/predictive-maintenance-example/blob/main/sql/snowsql_staging.sql) script through `snowsql`. 
+2. Afterwards, using the CSVs downloaded from Kaggle, you can use `snowsql` to upload the data. Refer to SnowSQL's [documentation](https://docs.snowflake.com/en/user-guide/snowsql-use.html#running-batch-scripts) and execute the [snowsql_staging.sql](https://github.com/AndrewRTsao/predictive-maintenance-example/blob/main/sql/snowsql_staging.sql) script through `snowsql`. 
 
 
 ## For dbt users
