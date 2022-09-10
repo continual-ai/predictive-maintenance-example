@@ -4,7 +4,7 @@ Here you will find the dbt project used by the Continual team to build out the p
 
 To get started, refer to our guided example on [predictive maintenance](https://docs.continual.ai/predictive-maintenance/) for a more detailed walkthrough. 
 
-To get started with this dbt project, run the following commands (this project utilizes dbt-utils):
+To get started with this dbt project, run the following commands (this project utilizes [dbt-utils](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/)):
 
 ```sh
 dbt deps
