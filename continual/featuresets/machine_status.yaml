@@ -1,5 +1,5 @@
 type: FeatureSet
-name: vm_machine_status
+name: vm_machine_hourly_status
 entity: azure_vm
 index: machine_id
 time_index: ts
