@@ -41,8 +41,8 @@ final as (
 			  else 'PREDICT_ME'
       end as split
 
-      from next_failures
-      order by machine_id asc, ts desc
+    from next_failures
+    order by machine_id asc, ts desc
 
 )
 

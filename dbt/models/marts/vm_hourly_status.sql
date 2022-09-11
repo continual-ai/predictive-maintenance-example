@@ -44,8 +44,8 @@ final as (
       datediff(hour, most_recent_error4, ts) as hours_since_last_error4,
       datediff(hour, most_recent_error5, ts) as hours_since_last_error5
 
-      from machine_status
-      order by machine_id asc, ts desc
+    from machine_status
+    order by machine_id asc, ts desc
 
 )
 
