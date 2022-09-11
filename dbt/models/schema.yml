@@ -172,3 +172,39 @@ models:
         description: Current pressure reading of the machine
       - name: vibration
         description: Current vibration reading of the machine
+        
+  - name: vm_error_count
+    description: Rolling count of errors encountered by a machine by total errors and individual error codes over different period intervals of time
+    columns:
+      - name: machine_id
+        description: Each machine_id and ts should form a unique record
+        tests: 
+          - not_null
+      - name: ts
+        description: timestamp
+        tests: 
+          - not_null
+      - name: total_errors_24hr_count
+        description: Total number of errors encountered by machine over last 24 hours
+      - name: error1_24hr_count
+        description: Number of times error1 was encountered by machine in last 24 hours
+      - name: error2_24hr_count
+        description: Number of times error2 was encountered by machine in last 24 hours
+      - name: error3_24hr_count
+        description: Number of times error3 was encountered by machine in last 24 hours
+      - name: error4_24hr_count
+        description: Number of times error4 was encountered by machine in last 24 hours
+      - name: error5_24hr_count
+        description: Number of times error5 was encountered by machine in last 24 hours
+      - name: total_errors_7day_count
+        description: Total number of errors encountered by machine over last 7 days
+      - name: error1_7day_count
+        description: Number of times error1 was encountered by machine in last 7 days
+      - name: error2_7day_count
+        description: Number of times error2 was encountered by machine in last 7 days
+      - name: error3_7day_count
+        description: Number of times error3 was encountered by machine in last 7 days
+      - name: error4_7day_count
+        description: Number of times error4 was encountered by machine in last 7 days
+      - name: error5_7day_count
+        description: Number of times error5 was encountered by machine in last 7 days

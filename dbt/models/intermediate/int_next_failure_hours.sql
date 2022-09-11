@@ -28,7 +28,7 @@ joined as (
     (select min(ts) from failures where machine_id = telemetry.machine_id and ts >= telemetry.ts and comp3_failure > 0) as next_comp3_failure,
     (select min(ts) from failures where machine_id = telemetry.machine_id and ts >= telemetry.ts and comp4_failure > 0) as next_comp4_failure
 
-    from telemetry
+  from telemetry
 
 ),
 
@@ -43,7 +43,7 @@ final as (
     datediff(hour, ts, next_comp3_failure) as hours_until_next_comp3_failure,
     datediff(hour, ts, next_comp4_failure) as hours_until_next_comp4_failure
 
-    from joined
+  from joined
 
 )
 
