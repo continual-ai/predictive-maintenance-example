@@ -133,36 +133,4 @@ create or replace table predictive_maintenance.azure_vm.vm_hourly_status as (
     order by machine_id asc, ts desc
 );
 
-create or replace table predictive_maintenance.azure_vm.vm_error_count as (
-    with errors_by_hour as (
-        select
-          t1.machine_id,
-          t1.ts,
-          t2.error1,
-          t2.error2,
-          t2.error3,
-          t2.error4,
-          t2.error5
-        from predictive_maintenance.azure_vm.vm_telemetry as t1
-        left join predictive_maintenance.azure_vm.vm_errors as t2
-        using (machine_id, ts)
-    )
-    select
-      machine_id,
-      ts,
-      ifnull(sum(error1 + error2 + error3 + error4 + error5) over (partition by machine_id order by ts desc rows between 1 following and 24 following), 0) as total_errors_24hr_count,
-      ifnull(sum(error1) over (partition by machine_id order by ts desc rows between 1 following and 24 following), 0) as error1_24hr_count,
-      ifnull(sum(error2) over (partition by machine_id order by ts desc rows between 1 following and 24 following), 0) as error2_24hr_count,
-      ifnull(sum(error3) over (partition by machine_id order by ts desc rows between 1 following and 24 following), 0) as error3_24hr_count,
-      ifnull(sum(error4) over (partition by machine_id order by ts desc rows between 1 following and 24 following), 0) as error4_24hr_count,
-      ifnull(sum(error5) over (partition by machine_id order by ts desc rows between 1 following and 24 following), 0) as error5_24hr_count,
-      ifnull(sum(error1 + error2 + error3 + error4 + error5) over (partition by machine_id order by ts desc rows between 1 following and 168 following), 0) as total_errors_7day_count,
-      ifnull(sum(error1) over (partition by machine_id order by ts desc rows between 1 following and 168 following), 0) as error1_7day_count,
-      ifnull(sum(error2) over (partition by machine_id order by ts desc rows between 1 following and 168 following), 0) as error2_7day_count,
-      ifnull(sum(error3) over (partition by machine_id order by ts desc rows between 1 following and 168 following), 0) as error3_7day_count,
-      ifnull(sum(error4) over (partition by machine_id order by ts desc rows between 1 following and 168 following), 0) as error4_7day_count,
-      ifnull(sum(error5) over (partition by machine_id order by ts desc rows between 1 following and 168 following), 0) as error5_7day_count
-    from errors_by_hour
-);
-
 commit;
